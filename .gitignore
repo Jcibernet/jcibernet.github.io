@@ -1,0 +1,25 @@
+# Documentation
+docs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Node modules (if using any build tools)
+node_modules/
+
+# Build outputs
+dist/
+build/
