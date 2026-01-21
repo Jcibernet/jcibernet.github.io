@@ -481,11 +481,12 @@ section {
 
 /*About*/
 .about-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
-      grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
-  gap: var(--space-xl);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-top: var(--space-lg);
   padding-bottom: var(--space-xl);
 }
@@ -554,41 +555,41 @@ section {
 }
 
 .about-container .right-about .about-item .abt-text .small-text {
-  padding-left: 3rem;
   position: relative;
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   color: var(--color-grey-1);
-  letter-spacing: 2px;
-}
-
-.about-container .right-about .about-item .abt-text .small-text::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 15px;
-  width: 2rem;
-  height: 2px;
-  background-color: var(--color-grey-5);
+  letter-spacing: 1px;
+  line-height: 1.4;
+  margin-top: 0.5rem;
 }
 
 .about-container .left-about {
-  padding-right: 5rem;
+  padding-right: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .about-container .left-about p {
-  line-height: 2rem;
-  padding: 1rem;
+  line-height: 1.8;
+  padding: 0;
+  margin-bottom: var(--space-md);
   color: var(--color-grey-1);
 }
 
+.about-container .left-about .btn-con {
+  margin-top: var(--space-lg);
+}
+
 .about-container .left-about h4 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   text-transform: uppercase;
+  margin-bottom: var(--space-md);
 }
 
 .about-stats {
-  padding-bottom: 4rem;
+  padding-bottom: var(--space-lg);
 }
 
 .about-stats .progress-bars {
@@ -684,7 +685,7 @@ section {
   text-transform: uppercase;
   font-size: 1.4rem;
   text-align: center;
-  padding: 3.5rem 0;
+  padding: var(--space-xl) 0;
   position: relative;
 }
 
@@ -806,29 +807,32 @@ section {
 }
 
 .port-text {
-  padding: 2rem 0;
+  padding: var(--space-md) 0;
   text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--color-grey-1);
 }
 
 .portfolios {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: var(--space-lg);
   margin-top: var(--space-xl);
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.portfolios .portfolio-item:only-child {
-  max-width: 500px;
-  margin: 0 auto;
-  grid-column: 1 / -1;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
 }
 
 .portfolios .portfolio-item {
+  width: 300px;
+  max-width: 100%;
   position: relative;
   border-radius: 15px;
   background: linear-gradient(145deg,
@@ -867,9 +871,15 @@ section {
 
 .portfolios .portfolio-item img {
   width: 100%;
-  height: 300px;
+  height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 15px;
+}
+
+.portfolios .portfolio-item .image {
+  height: 200px;
+  overflow: hidden;
   border-radius: 15px;
 }
 
@@ -1046,7 +1056,7 @@ section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 3.5rem;
+  padding-top: var(--space-xl);
 }
 
 .contact-content-con .left-contact {
@@ -1416,8 +1426,78 @@ section {
           box-shadow: var(--shadow-sm);
 }
 
+/* Teal/Cyan Button Variant */
+.main-btn.btn-teal {
+  border-color: #14b8a6;
+  background: linear-gradient(135deg,
+    rgba(20, 184, 166, 0.1) 0%,
+    transparent 100%);
+}
+
+.main-btn.btn-teal .btn-icon {
+  background: linear-gradient(135deg,
+    #14b8a6 0%,
+    #0d9488 100%);
+  -webkit-box-shadow:
+    0 0 0 1px rgba(20, 184, 166, 0.1),
+    0 4px 14px 0 rgba(20, 184, 166, 0.3),
+    0 2px 6px 0 rgba(0, 0, 0, 0.15);
+          box-shadow:
+    0 0 0 1px rgba(20, 184, 166, 0.1),
+    0 4px 14px 0 rgba(20, 184, 166, 0.3),
+    0 2px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+.main-btn.btn-teal:hover {
+  -webkit-box-shadow:
+    0 0 0 1px rgba(20, 184, 166, 0.15),
+    0 10px 25px -3px rgba(20, 184, 166, 0.4),
+    0 6px 12px -2px rgba(0, 0, 0, 0.2);
+          box-shadow:
+    0 0 0 1px rgba(20, 184, 166, 0.15),
+    0 10px 25px -3px rgba(20, 184, 166, 0.4),
+    0 6px 12px -2px rgba(0, 0, 0, 0.2);
+}
+
+.main-btn.btn-teal:hover::before {
+  background-color: #14b8a6;
+}
+
+/* Flat Button Style */
+.btn-flat {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 0.875rem 1.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-flat i {
+  font-size: 1.1rem;
+}
+
+.btn-flat:hover {
+  background-color: #067a2a;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
 .main-title {
   text-align: center;
+  margin-bottom: var(--space-md);
 }
 
 .main-title h2 {
@@ -1445,10 +1525,6 @@ section {
   font-weight: 800;
   font-size: clamp(3rem, 2rem + 5vw, 7rem);
   opacity: 0.5;
-}
-
-.about-container .left-about p {
-  padding-left: 0;
 }
 
 /* ===================================
@@ -1489,6 +1565,12 @@ section {
     margin: 0 var(--space-xs);
   }
 
+  /* REMOVE: Extra right padding since controls are at bottom */
+  section,
+  header {
+    padding-right: var(--container-padding) !important;
+  }
+
   /* PRIORITIZE: Content-first layout */
   .header-content {
     padding: var(--space-lg);
@@ -1496,6 +1578,15 @@ section {
 
   .right-header {
     max-width: 100%;
+  }
+
+  /* ABOUT: Center and adjust for mobile */
+  .about-container .left-about {
+    padding: 0 var(--space-sm);
+  }
+
+  .about-container .left-about h4 {
+    font-size: 1.5rem;
   }
 
   /* STACK: Timeline becomes single column for readability */
