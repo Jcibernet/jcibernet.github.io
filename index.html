@@ -2,312 +2,366 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Juan Campias | AI & Data Engineering Consulting</title>
+    <meta name="description" content="I help businesses integrate AI and build data infrastructure. Book a discovery call.">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="main-content">
-    <header class="container header active" id="home">
-        <div class="header-content">
-            <div class="right-header">
-                <h1 class="name">
-                    <span>Juan Campias.</span>
-                    <br>
-                    Senior Data Engineer | Cloud & Big Data
-                </h1>
-                <p>
-                    Continuously striving to develop solutions that benefit society.
-                </p>
-                <div class="btn-con">
-                    <a href="https://drive.google.com/file/d/1Mod3W7FStJSkcu13ziLFH2QA9avXqK-2/view?usp=drive_link" class="btn-flat" target="_blank">
-                        <i class="fas fa-download"></i>
-                        <span>Download CV</span>
-                    </a>
-                </div>
-            </div>
+<body>
+    <!-- Language Toggle -->
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-en">EN</span>
+        <span class="lang-es" hidden>ES</span>
+    </button>
+
+    <!-- Hero -->
+    <header class="section hero" id="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="lang-en">I help businesses integrate <span class="highlight">AI</span>, build <span class="highlight">data infrastructure</span> and architect <span class="highlight">cloud solutions</span>.</span>
+                <span class="lang-es" hidden>Ayudo a empresas a integrar <span class="highlight">IA</span>, construir <span class="highlight">infraestructura de datos</span> y diseñar <span class="highlight">soluciones cloud</span>.</span>
+            </h1>
+            <p class="hero-sub">
+                <span class="lang-en">From strategy to production — scalable pipelines, cloud architecture, and AI solutions that deliver measurable results.</span>
+                <span class="lang-es" hidden>De la estrategia a producción — procesos escalables, arquitectura cloud y soluciones de IA con resultados medibles.</span>
+            </p>
+            <a href="#contact" class="cta-btn">
+                <span class="lang-en">Get in Touch</span>
+                <span class="lang-es" hidden>Contactá</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </header>
+
     <main>
-        <section class="container about" id="about">
-            <div class="main-title">
-                <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
+        <!-- Social Proof -->
+        <section class="section proof" id="proof">
+            <div class="section-inner">
+                <div class="proof-grid">
+                    <div class="proof-card">
+                        <span class="proof-number">7+</span>
+                        <span class="proof-label">
+                            <span class="lang-en">Years of engineering experience in fintech & banking</span>
+                            <span class="lang-es" hidden>Años de experiencia en ingeniería en fintech y banca</span>
+                        </span>
+                    </div>
+                    <div class="proof-card">
+                        <span class="proof-number">
+                            <span class="lang-en">Billions</span>
+                            <span class="lang-es" hidden>Millones</span>
+                        </span>
+                        <span class="proof-label">
+                            <span class="lang-en">Of transactions processed at scale</span>
+                            <span class="lang-es" hidden>De transacciones procesadas a escala</span>
+                        </span>
+                    </div>
+                    <div class="proof-card">
+                        <span class="proof-number">200+</span>
+                        <span class="proof-label">
+                            <span class="lang-en">Graduates from the Big Data specialization I created & taught</span>
+                            <span class="lang-es" hidden>Graduados de la especialización en Big Data que creé y dicté</span>
+                        </span>
+                    </div>
+                    <div class="proof-card">
+                        <span class="proof-number highlight">Top-tier</span>
+                        <span class="proof-label">
+                            <span class="lang-en">Clients: Banco Sabadell, dLocal Payments, Naranja X</span>
+                            <span class="lang-es" hidden>Clientes: Banco Sabadell, dLocal Payments, Naranja X</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="tech-badges">
+                    <span class="badge">AWS</span>
+                    <span class="badge">GCP</span>
+                    <span class="badge">Azure</span>
+                    <span class="badge">Snowflake</span>
+                    <span class="badge">Apache Airflow</span>
+                    <span class="badge">Python</span>
+                    <span class="badge">Redshift</span>
+                </div>
             </div>
-            <div class="about-container">
-                <div class="left-about">
-                    <h4>Information About me</h4>
+        </section>
+
+        <!-- About -->
+        <section class="section about" id="about">
+            <div class="section-inner">
+                <h2>
+                    <span class="lang-en">About <span class="highlight">Me</span></span>
+                    <span class="lang-es" hidden>Sobre <span class="highlight">Mí</span></span>
+                </h2>
+                <div class="about-content">
                     <p>
-                        Senior Data Engineer with 6+ years of experience specializing in cloud infrastructure and big data solutions. Currently at dLocal, I architect scalable ETL pipelines with Apache Airflow and optimize Redshift data warehouses handling billions of payment transactions across LATAM, APAC, and EMEA.
+                        <span class="lang-en">Senior Data & Cloud Engineer with 7+ years of experience architecting cloud infrastructure and big data solutions across AWS, GCP, and Azure. Currently at dLocal Payments, I design scalable ETL pipelines with Apache Airflow and optimize Redshift data warehouses handling billions of payment transactions across LATAM, APAC, and EMEA.</span>
+                        <span class="lang-es" hidden>Ingeniero de Datos & Cloud Senior con más de 7 años de experiencia diseñando infraestructura cloud y soluciones de big data en AWS, GCP y Azure. Actualmente en dLocal Payments, diseño procesos de datos escalables con Apache Airflow y optimizo data warehouses en Redshift procesando millones de transacciones de pago en LATAM, APAC y EMEA.</span>
                     </p>
                     <p>
-                        Expert in AWS, GCP, and Snowflake with a passion for education—I created and taught the Big Data specialization at Informatorio Chaco, graduating 200+ students in ETL, Python, and Data Governance.
-                    </p>
-                    <div class="btn-con">
-                        <a href="https://drive.google.com/file/d/1Mod3W7FStJSkcu13ziLFH2QA9avXqK-2/view?usp=drive_link" class="btn-flat" target="_blank">
-                            <i class="fas fa-download"></i>
-                            <span>Download CV</span>
-                        </a>
-                    </div>
-                </div>
-                            </div>
-            <div class="about-stats">
-                <!--h4 class="stat-title">My Skills</h4>
-                <div class="progress-bars">
-                    <div class="progress-bar">
-                        <p class="prog-title">Python</p>
-                        <div class="progress-con">
-                            <p class="prog text">90%</p>
-                            <div class="progress">
-                                <span class="python"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">AWS</p>
-                        <div class="progress-con">
-                            <p class="prog text">70%</p>
-                            <div class="progress">
-                                <span class="aws"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Django</p>
-                        <div class="progress-con">
-                            <p class="prog text">70%</p>
-                            <div class="progress">
-                                <span class="django"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Flask</p>
-                        <div class="progress-con">
-                            <p class="prog text">75%</p>
-                            <div class="progress">
-                                <span class="flask"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">NodeJS</p>
-                        <div class="progress-con">
-                            <p class="prog text">60%</p>
-                            <div class="progress">
-                                <span class="node"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">SQL</p>
-                        <div class="progress-con">
-                            <p class="prog text">80%</p>
-                            <div class="progress">
-                                <span class="sql"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">HTML5</p>
-                        <div class="progress-con">
-                            <p class="prog text">80%</p>
-                            <div class="progress">
-                                <span class="html"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">CSS3</p>
-                        <div class="progress-con">
-                            <p class="prog text">65%</p>
-                            <div class="progress">
-                                <span class="css"></span>
-                            </div>
-                        </div>
-                    </div>
-            </div-->
-            </div>
-            <h4 class="stat-title">My Timeline</h4>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">Feb 2025 - Present</p>
-                    <h5>Sr BI Engineer II <span>dLocal</span></h5>
-                    <p>
-                        Design and maintain scalable data pipelines using Apache Airflow for international payment processing. Optimize Redshift data warehouse handling billions of transactions across LATAM, APAC, and EMEA.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">Oct 2023 - Apr 2025</p>
-                    <h5>BI Data Engineer <span>Domus (dLocal BI Team)</span></h5>
-                    <p>
-                        Developed Data Lake architecture using Python, Looker Studio, and 9+ analytics tools. Built reporting solutions for payment transaction analysis across global markets.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <p class="tl-duration">Jul 2022 - Oct 2023</p>
-                    <h5>Cloud Data Engineer <span>NowVertical ES (CoreBI)</span></h5>
-                    <p>
-                        Google Cloud Platform specialist: DataLake architecture, Data Warehouse management. Led migration of on-premises databases to AWS at Naranja X.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <p class="tl-duration">May 2022 - Jan 2024</p>
-                    <h5>Big Data Professor <span>Informatorio Chaco</span></h5>
-                    <p>
-                        Created the Big Data specialization curriculum from scratch. Graduated 200+ students in ETL, Python, SQL, Django, Data Lake/Warehouse, and Data Governance.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-snowflake"></i>
-                    </div>
-                    <p class="tl-duration">Jul 2022</p>
-                    <h5>Snowflake Consultant <span>Banco Sabadell</span></h5>
-                    <p>
-                        Specialized Snowflake consulting for one of Spain's largest banks. Designed backend architecture and reduced storage costs by 30%.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <p class="tl-duration">2017 - 2022</p>
-                    <h5>Education <span>UNCAUS & CoderHouse</span></h5>
-                    <p>
-                        Chemical Engineering at UNCAUS. Data Scientist Career at CoderHouse: Statistics, Machine Learning, EDA with Sklearn, Power BI.
+                        <span class="lang-en">Expert in AWS, GCP, and Snowflake with a passion for education — I created and taught the Big Data specialization at Informatorio Chaco, graduating 200+ students in ETL, Python, and Data Governance.</span>
+                        <span class="lang-es" hidden>Experto en AWS, GCP y Snowflake con pasión por la educación — creé y dicté la especialización en Big Data en Informatorio Chaco, graduando más de 200 estudiantes en ETL, Python y Data Governance.</span>
                     </p>
                 </div>
             </div>
         </section>
-        <section class="container porfolio" id="portfolio">
-            <div class="main-title">
-                <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
+
+        <!-- How I Help -->
+        <section class="section services" id="services">
+            <div class="section-inner">
+                <h2>
+                    <span class="lang-en">How I <span class="highlight">Help</span></span>
+                    <span class="lang-es" hidden>Cómo puedo <span class="highlight">ayudarte</span></span>
+                </h2>
+                <p class="services-intro">
+                    <span class="lang-en">I offer an integrated approach to data and AI — from architecture to implementation.</span>
+                    <span class="lang-es" hidden>Ofrezco un enfoque integrado de datos e IA — desde la arquitectura hasta la implementación.</span>
+                </p>
+                <ul class="services-list">
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <strong>
+                                <span class="lang-en">AI Integration</span>
+                                <span class="lang-es" hidden>Integración de IA</span>
+                            </strong>
+                            <p>
+                                <span class="lang-en">Custom AI solutions, LLM integration, and intelligent automation for your workflows.</span>
+                                <span class="lang-es" hidden>Soluciones de IA a medida, integración de LLMs y automatización inteligente para tus flujos de trabajo.</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-database"></i>
+                        <div>
+                            <strong>
+                                <span class="lang-en">Data Infrastructure</span>
+                                <span class="lang-es" hidden>Infraestructura de Datos</span>
+                            </strong>
+                            <p>
+                                <span class="lang-en">Scalable ETL pipelines, data lakes, and warehouses built for performance.</span>
+                                <span class="lang-es" hidden>Procesos de datos escalables, data lakes y warehouses construidos para rendimiento.</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-cloud"></i>
+                        <div>
+                            <strong>
+                                <span class="lang-en">Cloud Architecture</span>
+                                <span class="lang-es" hidden>Arquitectura Cloud</span>
+                            </strong>
+                            <p>
+                                <span class="lang-en">AWS, GCP, and Snowflake — optimized for cost, scale, and reliability.</span>
+                                <span class="lang-es" hidden>AWS, GCP y Snowflake — optimizado para costo, escala y confiabilidad.</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div>
+                            <strong>
+                                <span class="lang-en">Team Training</span>
+                                <span class="lang-es" hidden>Capacitación de Equipos</span>
+                            </strong>
+                            <p>
+                                <span class="lang-en">Upskill your team in data engineering, Python, and modern data practices.</span>
+                                <span class="lang-es" hidden>Capacitá a tu equipo en ingeniería de datos, Python y prácticas modernas de datos.</span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="services-cta">
+                    <a href="#contact" class="cta-btn">
+                        <span class="lang-en">Let's discuss your specific needs</span>
+                        <span class="lang-es" hidden>Conversemos sobre tus necesidades</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p class="port-text">
-                Here is some of my work that I've done in varius programming languages.
-            </p>
-            <div class="portfolios">
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/firefighters.jpg" alt="Patagonia Fires Map">
+        </section>
+
+        <!-- Track Record -->
+        <section class="section track-record" id="track-record">
+            <div class="section-inner">
+                <h2>
+                    <span class="lang-en">Track <span class="highlight">Record</span></span>
+                    <span class="lang-es" hidden>Trayec<span class="highlight">toria</span></span>
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="tl-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="tl-content">
+                            <span class="tl-date">2023 - Present</span>
+                            <h3>Sr BI Engineer II <span class="tl-company">dLocal Payments</span></h3>
+                            <p>
+                                <span class="lang-en">Scalable data pipelines with Apache Airflow for international payment processing. Redshift data warehouse handling billions of transactions across LATAM, APAC, and EMEA.</span>
+                                <span class="lang-es" hidden>Procesos de datos escalables con Apache Airflow para procesamiento de pagos internacionales. Data warehouse en Redshift procesando miles de millones de transacciones en LATAM, APAC y EMEA.</span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="hover-items">
-                        <h3>Patagonia Fires</h3>
-                        <div class="icons">
-                            <a href="https://www.patagoniafires.org" class="icon" target="_blank">
+                    <div class="timeline-item">
+                        <div class="tl-icon"><i class="fas fa-snowflake"></i></div>
+                        <div class="tl-content">
+                            <span class="tl-date">2022 - 2023</span>
+                            <h3>Cloud Data Engineer <span class="tl-company">NowVertical ES (CoreBI)</span></h3>
+                            <p>
+                                <span class="lang-en">GCP specialist: DataLake architecture, Data Warehouse management. Led migration of on-premises databases to AWS at Naranja X. Snowflake consulting for Banco Sabadell — reduced storage costs by 30%.</span>
+                                <span class="lang-es" hidden>Especialista GCP: arquitectura DataLake, gestión de Data Warehouse. Lideré migración de bases on-premises a AWS en Naranja X. Consultoría Snowflake para Banco Sabadell — reducción de costos de almacenamiento del 30%.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="tl-icon"><i class="fas fa-code"></i></div>
+                        <div class="tl-content">
+                            <span class="tl-date">2020 - Present</span>
+                            <h3>Backend Engineer & Web App Developer <span class="tl-company">Independent</span></h3>
+                            <p>
+                                <span class="lang-en">Building full-stack web applications at the intersection of finance, crypto, and blockchain. Developed e-commerce platforms, financial tools, and trading systems — leveraging deep domain knowledge in fintech to deliver production-grade apps with Python, PHP, and Next.js.</span>
+                                <span class="lang-es" hidden>Desarrollo de aplicaciones web full-stack en la intersección de finanzas, crypto y blockchain. Plataformas de e-commerce, herramientas financieras y sistemas de trading — aplicando conocimiento profundo en fintech para entregar apps de producción con Python, PHP y Next.js.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="tl-content">
+                            <span class="tl-date">2022 - 2024</span>
+                            <h3>Big Data Professor <span class="tl-company">Informatorio Chaco</span></h3>
+                            <p>
+                                <span class="lang-en">Created the Big Data specialization curriculum from scratch. Graduated 200+ students in ETL, Python, SQL, Django, Data Lake/Warehouse, and Data Governance.</span>
+                                <span class="lang-es" hidden>Creé el plan de estudios de la especialización en Big Data desde cero. Gradué más de 200 estudiantes en ETL, Python, SQL, Django, Data Lake/Warehouse y Data Governance.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Work -->
+        <section class="section featured" id="featured">
+            <div class="section-inner">
+                <h2>
+                    <span class="lang-en">Featured <span class="highlight">Work</span></span>
+                    <span class="lang-es" hidden>Trabajo <span class="highlight">Destacado</span></span>
+                </h2>
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <div class="featured-img">
+                            <img src="img/firefighters.jpg" alt="Patagonia Fires Map">
+                        </div>
+                        <div class="featured-info">
+                            <h3>Patagonia Fires</h3>
+                            <p>
+                                <span class="lang-en">Real-time fire monitoring platform for the Patagonia region.</span>
+                                <span class="lang-es" hidden>Plataforma de monitoreo de incendios en tiempo real para la región de Patagonia.</span>
+                            </p>
+                            <a href="https://www.patagoniafires.org" target="_blank" class="featured-link">
+                                <span class="lang-en">View project</span>
+                                <span class="lang-es" hidden>Ver proyecto</span>
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port1.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h3>More Projects</h3>
-                        <div class="icons">
-                            <a href="https://github.com/Jcibernet" class="icon" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/campiasjuan/" class="icon" target="_blank">
-                                <i class="fab fa-linkedin"></i>
+                    <div class="featured-card">
+                        <div class="featured-img">
+                            <img src="img/port1.jpg" alt="More Projects">
+                        </div>
+                        <div class="featured-info">
+                            <h3>
+                                <span class="lang-en">More Projects</span>
+                                <span class="lang-es" hidden>Más Proyectos</span>
+                            </h3>
+                            <p>
+                                <span class="lang-en">Check out my open source work and contributions on GitHub.</span>
+                                <span class="lang-es" hidden>Mira mi trabajo open source y contribuciones en GitHub.</span>
+                            </p>
+                            <a href="https://github.com/Jcibernet" target="_blank" class="featured-link">
+                                GitHub <i class="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="container contact" id="contact">
-            <div class="contact-container">
-                <div class="main-title">
-                    <h2>Looking for a data engineering expert? Let's discuss how I can help with your <span>data</span> challenges.<span class="bg-text">Contact</span></h2>
-                </div>
-                <div class="contact-content-con">
-                    <div class="left-contact">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Location</span>
-                                </div>
-                                <p>
-                                    : Argentina
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email</span>
-                                </div>
-                                <p>
-                                    : campiasjuan@gmail.com
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>Education</span>
-                                </div>
-                                <p>
-                                    : UNCAus, Argentina
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-globe-africa"></i>
-                                    <span>Languages</span>
-                                </div>
-                                <p>
-                                    : English, Spanish
-                                </p>
-                            </div>
+
+        <!-- Contact Form -->
+        <section class="section contact" id="contact">
+            <div class="section-inner">
+                <h2>
+                    <span class="lang-en">Start the <span class="highlight">conversation</span></span>
+                    <span class="lang-es" hidden>Iniciemos la <span class="highlight">conversación</span></span>
+                </h2>
+                <p class="form-intro">
+                    <span class="lang-en">Tell me about your project. I'll get back to you within 24 hours.</span>
+                    <span class="lang-es" hidden>Contame sobre tu proyecto. Te respondo en menos de 24 horas.</span>
+                </p>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <!-- Honeypot anti-spam: hidden field, bots fill it, humans don't -->
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">
+                                <span class="lang-en">Name</span>
+                                <span class="lang-es" hidden>Nombre</span>
+                            </label>
+                            <input type="text" id="name" name="name" required>
                         </div>
-                        <div class="contact-icons">
-                            <div class="contact-icon">
-                                <a href="https://www.linkedin.com/in/campiasjuan/" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://github.com/Jcibernet/" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                     </div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">
+                                <span class="lang-en">Company</span>
+                                <span class="lang-es" hidden>Empresa</span>
+                            </label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">
+                                <span class="lang-en">Role</span>
+                                <span class="lang-es" hidden>Rol</span>
+                            </label>
+                            <input type="text" id="role" name="role">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="challenge">
+                            <span class="lang-en">What's your biggest data challenge?</span>
+                            <span class="lang-es" hidden>¿Cuál es tu mayor desafío con datos?</span>
+                        </label>
+                        <textarea id="challenge" name="challenge" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="cta-btn submit-btn">
+                        <span class="lang-en">Send Message</span>
+                        <span class="lang-es" hidden>Enviar Mensaje</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </section>
+
     </main>
-    <div class="controls">
-        <div class="control active-btn" data-id="home" >
-            <i class="fas fa-home"></i>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/campiasjuan/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/Jcibernet/" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://calendar.app.google/x5zJ7k3wF63kZXiM6" target="_blank" aria-label="Book a call">
+                <i class="fas fa-calendar-alt"></i>
+            </a>
         </div>
-        <div class="control" data-id="about">
-            <i class="fas fa-user"></i>
-        </div>
-        <div class="control" data-id="portfolio">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="control" data-id="contact">
-            <i class="fas fa-envelope-open"></i>
-        </div>
-    </div>
+        <p>&copy; 2026 Juan Campias</p>
+    </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
