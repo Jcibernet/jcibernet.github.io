@@ -33,6 +33,20 @@
         applyLang(currentLang === 'en' ? 'es' : 'en');
     });
 
+    // Marquee: clone items for seamless infinite loop
+    var track = document.querySelector('.marquee-track');
+    if (track) {
+        var items = track.innerHTML;
+        track.innerHTML = items + items;
+    }
+
+    // Featured grid: clone items for seamless infinite loop
+    var featuredGrid = document.querySelector('.featured-grid');
+    if (featuredGrid) {
+        var items = featuredGrid.innerHTML;
+        featuredGrid.innerHTML = items + items;
+    }
+
     // Form: validate
     var form = document.getElementById('contactForm');
     form.addEventListener('submit', function (e) {
