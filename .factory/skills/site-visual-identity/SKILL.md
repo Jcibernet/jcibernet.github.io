@@ -72,6 +72,21 @@ If a richer composition is required, build gradients from the existing palette o
 - **No multicolor logo. No gradient on the mark.** (Past mistake: gradient indigo→cyan.)
 - Tech stack icons in compositions: render as **text chips** styled like the site's UI cards (`background: #2a2e35`, `border: 1px solid #454e56`, `color: #dbe1e8`, `border-radius: 8px`, padding `7px 13px`, weight 600, size 13px). This avoids broken external SVG loads in headless renders **and** matches the on-site visual language.
 
+### In-page icon system (NOT FontAwesome)
+
+The site no longer loads FontAwesome from CDN — it ships an inline SVG sprite at the top of every page. To add a new icon:
+
+1. Download the SVG (FontAwesome 6 free, simpleicons.org, etc.)
+2. Add a `<symbol id="i-<name>" viewBox="...">...</symbol>` to the sprite block at the top of `<body>` in **both** `index.html` and `es/index.html`
+3. Reference it: `<svg class="icon" aria-hidden="true"><use href="#i-<name>"></use></svg>`
+4. The `.icon` CSS class already handles size (1em) and `currentColor` fill — context styles override as needed
+
+Never re-introduce `<i class="fa...">` or external icon CSS. It costs ~165 KB and blocks render.
+
+### Self-hosted Poppins
+
+Fonts live in `/fonts/poppins-{400,500,600,700,800}.woff2` (latin subset, ~8 KB each). Three weights are preloaded in HTML head: 400, 700, 800. Don't re-add Google Fonts `<link>` — it blocks the critical render path.
+
 ---
 
 ## 5. Composition Rules for Asset Generation
