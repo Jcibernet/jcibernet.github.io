@@ -86,13 +86,19 @@
             });
         });
 
-        // Marquee: clone items for seamless infinite loop
-        var track = document.querySelector('.marquee-track');
-        if (track) track.innerHTML += track.innerHTML;
-
-        // Featured grid: clone items for seamless infinite loop
-        var featuredGrid = document.querySelector('.featured-grid');
-        if (featuredGrid) featuredGrid.innerHTML += featuredGrid.innerHTML;
+        // Marquee + featured: clone items for seamless infinite loop.
+        // Wrapped in rAF to avoid forced reflow on first paint (clones happen
+        // off the critical rendering path, after the browser is idle).
+        function cloneChildren(el) {
+            if (!el) return;
+            var clone = el.cloneNode(true);
+            // Append clones (DOM range op, single reflow) to double the track
+            while (clone.firstChild) el.appendChild(clone.firstChild);
+        }
+        requestAnimationFrame(function () {
+            cloneChildren(document.querySelector('.marquee-track'));
+            cloneChildren(document.querySelector('.featured-grid'));
+        });
 
         // Contact form: minimal client-side validation
         var form = document.getElementById('contactForm');
