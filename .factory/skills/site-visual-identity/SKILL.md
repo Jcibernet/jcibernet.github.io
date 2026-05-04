@@ -147,12 +147,31 @@ If any box is unchecked, do not save. Re-render.
 
 ---
 
-## 9. When to update this skill
+## 9. Bilingual assets
+
+The site is bilingual: EN at `/` and ES at `/es/`. When generating any asset that **contains text** (OG cover, slide, banner, social post, screenshot annotation, etc.):
+
+- Default to English. The English asset is the canonical one and is referenced by both `index.html` and `es/index.html` via `og:image`.
+- If the user asks for a Spanish-targeted asset (e.g., LinkedIn LATAM campaign), produce a parallel `<name>-es.<ext>` next to the English version, and update `og:image` only in `es/index.html`.
+- Avoid mixing both languages in a single asset.
+- Same palette, fonts and composition rules in both versions.
+
+Example file naming for a parallel pair:
+
+```
+img/og-cover.jpg        # English (default, referenced everywhere by default)
+img/og-cover-es.jpg     # Spanish variant, referenced only from es/index.html if needed
+```
+
+---
+
+## 10. When to update this skill
 
 Update this file (and `styles.css` if needed) when:
 
 - The user explicitly asks for a redesign or new color scheme
 - A new asset class is introduced (e.g., podcast cover, ebook mockup)
 - A new design token is added to `:root` in `styles.css`
+- Site structure / URLs change (e.g., a new locale, a new section)
 
 Do **not** update it for one-off variations. One-offs go in the asset itself, not the skill.
