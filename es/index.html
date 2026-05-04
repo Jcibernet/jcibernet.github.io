@@ -42,12 +42,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
 
     <!-- Self-hosted fonts (preload critical weights for fast LCP) -->
+    <link rel="preload" href="/fonts/spacegrotesk-variable.woff2?v=06408904" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/poppins-400.woff2?v=7d93459d" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/poppins-700.woff2?v=9338e65f" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/poppins-800.woff2?v=60bf0aba" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/styles/styles.css?v=eb0c91ed">
+    <link rel="stylesheet" href="/styles/styles.css?v=45e4d4aa">
 
     <!-- Structured data: Person -->
     <script type="application/ld+json">
@@ -132,13 +133,83 @@
     <!-- Hero + Proof = full viewport -->
     <div class="landing-fold">
     <header class="section hero" id="hero">
+        <!-- Right-side figure: B&W photo + duotone tint + glitch slabs -->
+        <div class="figure-block" aria-hidden="true">
+            <div class="photo-figure"></div>
+            <span class="photo-tint"></span>
+            <span class="slab s1 dark"></span>
+            <span class="slab s2 green"></span>
+            <span class="slab s3"></span>
+            <span class="slab s4 bar green"></span>
+            <span class="slab s5 dark"></span>
+            <span class="slab s6 bar"></span>
+            <span class="slab s7 bar"></span>
+            <span class="slab s8 bar green"></span>
+            <span class="slab tag">REC ▸ 04:32</span>
+            <span class="slab tag b">N°.07</span>
+        </div>
+
+        <!-- Background circuit-trace decoration (left half) -->
+        <svg class="deco" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+                <linearGradient id="hero-trace" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" stop-color="#454e56" stop-opacity="0"/>
+                    <stop offset=".4" stop-color="#454e56" stop-opacity=".7"/>
+                    <stop offset="1" stop-color="#454e56" stop-opacity=".9"/>
+                </linearGradient>
+                <linearGradient id="hero-seam" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#055821" stop-opacity="0"/>
+                    <stop offset=".5" stop-color="#055821" stop-opacity=".75"/>
+                    <stop offset="1" stop-color="#055821" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <g opacity=".7">
+                <g stroke="url(#hero-trace)" stroke-width="1" fill="none">
+                    <path d="M0 140 L500 140 L540 180 L780 180"/>
+                    <path d="M0 220 L320 220 L360 260 L780 260"/>
+                    <path d="M0 320 L200 320 L240 360 L460 360 L500 400 L780 400"/>
+                    <path d="M0 460 L780 460"/>
+                    <path d="M0 540 L420 540 L460 580 L780 580"/>
+                    <path d="M0 640 L260 640 L300 680 L780 680"/>
+                    <path d="M0 740 L600 740 L640 780 L780 780"/>
+                </g>
+                <g stroke="#454e56" stroke-width="1" opacity=".55">
+                    <path d="M180 60  L180 320"/>
+                    <path d="M380 220 L380 460"/>
+                    <path d="M580 140 L580 460"/>
+                    <path d="M280 460 L280 740"/>
+                    <path d="M520 540 L520 800"/>
+                    <path d="M680 320 L680 580"/>
+                </g>
+                <g fill="#6c7983">
+                    <circle cx="180" cy="320" r="2.5"/>
+                    <circle cx="380" cy="460" r="2.5"/>
+                    <circle cx="580" cy="460" r="2.5"/>
+                    <circle cx="280" cy="640" r="2.5"/>
+                    <circle cx="520" cy="740" r="2.5"/>
+                    <circle cx="680" cy="580" r="2.5"/>
+                </g>
+                <circle cx="760" cy="460" r="3.5" fill="#055821" opacity=".9"/>
+                <circle cx="760" cy="460" r="7"   fill="#055821" opacity=".18"/>
+            </g>
+            <path d="M1000 0 L940 900 L960 900 L1020 0 Z" fill="url(#hero-seam)" opacity=".55"/>
+        </svg>
+
         <div class="hero-content">
-            <h1>Ayudo a empresas a integrar <span class="highlight">IA</span>, construir <span class="highlight">infraestructura de datos</span> y diseñar <span class="highlight">soluciones cloud</span>.</h1>
+            <h1>
+                <span class="ln l1">Ayudo a empresas a integrar</span>
+                <span class="ln l2"><span class="highlight">inteligencia artificial</span></span>
+                <span class="ln l3">construir <span class="highlight">infraestructura de datos</span></span>
+                <span class="ln l4">y diseñar <span class="highlight">soluciones nube</span></span>
+            </h1>
             <p class="hero-sub">De la estrategia a producción — pipelines escalables, arquitectura cloud y soluciones de IA con resultados medibles.</p>
-            <a href="#contact" class="cta-btn">
-                Contactá
-                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
-            </a>
+            <div class="cta-row">
+                <a href="#contact" class="cta-btn cta-techno">
+                    <span class="cta-tab">/01</span>
+                    <span class="cta-label">Contactá</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -148,8 +219,8 @@
             <div class="section-inner">
                 <div class="proof-grid">
                     <div class="proof-card">
-                        <span class="proof-number">7+</span>
-                        <span class="proof-label">Años de experiencia en ingeniería en fintech y banca</span>
+                        <span class="proof-number">3</span>
+                        <span class="proof-label">Continentes — LATAM · EMEA · APAC</span>
                     </div>
                     <div class="proof-card">
                         <span class="proof-number">Miles de millones</span>
