@@ -1,0 +1,14 @@
+{
+  "name": "juancampias.github.io",
+  "version": "1.0.0",
+  "description": "Personal site & portfolio for Juan Campias.",
+  "private": true,
+  "scripts": {
+    "build:css": "sass --no-source-map --style=expanded styles/styles.scss styles/styles.css",
+    "watch:css": "sass --no-source-map --style=expanded --watch styles/styles.scss:styles/styles.css",
+    "build": "npm run build:css && python3 tools/cache-bust.py"
+  },
+  "devDependencies": {
+    "sass": "^1.83.0"
+  }
+}
