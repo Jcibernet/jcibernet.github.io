@@ -1,128 +1,115 @@
 (function () {
-    // Footer year (auto-updates)
-    var yr = document.getElementById('footerYear');
-    if (yr) yr.textContent = new Date().getFullYear();
+    'use strict';
 
-    // Smooth scroll for CTA buttons
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            var target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-    // ----- Language detection -----
-    // Priority:
-    //   1) User's explicit choice (localStorage key 'lang')
-    //   2) IP geolocation (Spanish-speaking countries -> 'es')
-    //   3) Browser's Accept-Language header
-    //   4) Default 'en'
-    var langToggle = document.getElementById('langToggle');
+    // -----------------------------------------------------------------
+    // Geo-redirect (only on EN root "/", and only if user has no cookie)
+    // -----------------------------------------------------------------
+    // Lightweight fallback in lieu of a Cloudflare Worker. Runs ASAP, before
+    // most of the DOM is parsed (script is loaded near the bottom but does a
+    // synchronous decision; if redirect happens, the rest of the page is
+    // discarded by the navigation).
     var SPANISH_COUNTRIES = [
-        'AR', 'BO', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'ES', 'GQ',
-        'GT', 'HN', 'MX', 'NI', 'PA', 'PE', 'PR', 'PY', 'SV', 'UY', 'VE'
+        'AR','BO','CL','CO','CR','CU','DO','EC','ES','GQ',
+        'GT','HN','MX','NI','PA','PE','PR','PY','SV','UY','VE'
     ];
-    var currentLang = 'en';
 
-    function applyLang(lang, persist) {
-        currentLang = lang;
-        if (persist) {
-            localStorage.setItem('lang', lang);
-        }
-        document.documentElement.lang = lang;
-        document.querySelectorAll('.lang-en').forEach(function (el) {
-            el.hidden = lang !== 'en';
-        });
-        document.querySelectorAll('.lang-es').forEach(function (el) {
-            el.hidden = lang !== 'es';
-        });
+    function readCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]+)'));
+        return m ? decodeURIComponent(m[1]) : null;
+    }
+    function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + (days * 86400000));
+        document.cookie = name + '=' + encodeURIComponent(value) +
+            '; path=/; expires=' + d.toUTCString() + '; SameSite=Lax';
     }
 
-    function detectFromBrowser() {
-        var langs = (navigator.languages && navigator.languages.length)
-            ? navigator.languages
-            : [navigator.language || navigator.userLanguage || 'en'];
-        for (var i = 0; i < langs.length; i++) {
-            if (/^es\b/i.test(langs[i])) return 'es';
-            if (/^en\b/i.test(langs[i])) return 'en';
-        }
-        return 'en';
-    }
+    var path = window.location.pathname;
+    var isRoot = (path === '/' || path === '/index.html');
+    var isEs   = path.indexOf('/es/') === 0 || path === '/es';
+    var prefLang = readCookie('pref_lang');
 
-    function detectFromIP() {
-        // Free, no-key, CORS-enabled GeoIP service. Times out fast.
-        return new Promise(function (resolve) {
-            var done = false;
-            var t = setTimeout(function () {
-                if (!done) { done = true; resolve(null); }
-            }, 1500);
+    // Persist explicit clicks on the language toggle as a cookie.
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[data-set-lang]');
+        if (a) {
+            var lang = a.getAttribute('data-set-lang');
+            if (lang === 'en' || lang === 'es') {
+                setCookie('pref_lang', lang, 365);
+            }
+        }
+    }, true);
+
+    // Only redirect from the English root, never from /es/
+    if (isRoot && !prefLang) {
+        // 1.5s timeout: if geolocation fails or is slow, just stay on EN.
+        var done = false;
+        var timer = setTimeout(function () { done = true; }, 1500);
+
+        try {
             fetch('https://ipapi.co/json/', { cache: 'force-cache' })
                 .then(function (r) { return r.ok ? r.json() : null; })
                 .then(function (data) {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(t);
-                    if (!data || !data.country_code) return resolve(null);
-                    resolve(SPANISH_COUNTRIES.indexOf(data.country_code) !== -1 ? 'es' : 'en');
+                    if (done || !data || !data.country_code) return;
+                    clearTimeout(timer);
+                    if (SPANISH_COUNTRIES.indexOf(data.country_code) !== -1) {
+                        // No need to set cookie: next visit will already be on /es/
+                        // and the toggle there will set pref_lang if user goes back.
+                        window.location.replace('/es/');
+                    }
                 })
-                .catch(function () {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(t);
-                    resolve(null);
-                });
+                .catch(function () { /* silently ignore */ });
+        } catch (_) { /* old browsers: stay on EN */ }
+    }
+
+    // -----------------------------------------------------------------
+    // Page enhancements (run on DOM ready)
+    // -----------------------------------------------------------------
+    function ready(fn) {
+        if (document.readyState !== 'loading') return fn();
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(function () {
+        // Footer year (auto-updates)
+        var yr = document.getElementById('footerYear');
+        if (yr) yr.textContent = new Date().getFullYear();
+
+        // Smooth scroll for in-page anchors
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
-    }
 
-    var savedLang = localStorage.getItem('lang');
-    if (savedLang === 'en' || savedLang === 'es') {
-        // User already chose: respect it.
-        applyLang(savedLang, false);
-    } else {
-        // First visit: instant browser-based guess, then refine with IP.
-        applyLang(detectFromBrowser(), false);
-        detectFromIP().then(function (ipLang) {
-            if (ipLang && !localStorage.getItem('lang')) {
-                applyLang(ipLang, false);
-            }
-        });
-    }
+        // Marquee: clone items for seamless infinite loop
+        var track = document.querySelector('.marquee-track');
+        if (track) track.innerHTML += track.innerHTML;
 
-    langToggle.addEventListener('click', function () {
-        // Clicking the toggle is an explicit user choice -> persist it.
-        applyLang(currentLang === 'en' ? 'es' : 'en', true);
-    });
+        // Featured grid: clone items for seamless infinite loop
+        var featuredGrid = document.querySelector('.featured-grid');
+        if (featuredGrid) featuredGrid.innerHTML += featuredGrid.innerHTML;
 
-    // Marquee: clone items for seamless infinite loop
-    var track = document.querySelector('.marquee-track');
-    if (track) {
-        var items = track.innerHTML;
-        track.innerHTML = items + items;
-    }
-
-    // Featured grid: clone items for seamless infinite loop
-    var featuredGrid = document.querySelector('.featured-grid');
-    if (featuredGrid) {
-        var items = featuredGrid.innerHTML;
-        featuredGrid.innerHTML = items + items;
-    }
-
-    // Form: validate
-    var form = document.getElementById('contactForm');
-    form.addEventListener('submit', function (e) {
-        var name = document.getElementById('name').value.trim();
-        var email = document.getElementById('email').value.trim();
-        var challenge = document.getElementById('challenge').value.trim();
-
-        if (!name || !email || !challenge) {
-            e.preventDefault();
-            var msg = currentLang === 'en'
-                ? 'Please fill in all required fields.'
-                : 'Por favor completa todos los campos requeridos.';
-            alert(msg);
+        // Contact form: minimal client-side validation
+        var form = document.getElementById('contactForm');
+        if (form) {
+            var lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+            var msg = lang === 'es'
+                ? 'Por favor completá todos los campos requeridos.'
+                : 'Please fill in all required fields.';
+            form.addEventListener('submit', function (e) {
+                var name = document.getElementById('name');
+                var email = document.getElementById('email');
+                var challenge = document.getElementById('challenge');
+                if (!name.value.trim() || !email.value.trim() || !challenge.value.trim()) {
+                    e.preventDefault();
+                    alert(msg);
+                }
+            });
         }
     });
 })();
