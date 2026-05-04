@@ -858,54 +858,85 @@ a {
 @media screen and (max-width: 768px) {
   .hero {
     min-height: 100vh;
+    min-height: 100svh;
+    // Stronger fade behind text so headline reads cleanly when figure is tall
+    &::after {
+      background:
+        linear-gradient(180deg, transparent 0%, transparent 35%, rgba(10, 13, 20, .85) 70%, rgba(10, 13, 20, .96) 100%),
+        radial-gradient(ellipse 110% 85% at 50% 55%, transparent 55%, rgba(10, 13, 20, .7) 100%);
+    }
   }
+
+  // Figure: anchored to top, narrower, much more faded, no longer cropped on the side
   .hero .figure-block {
-    width: 60%;
-    right: -4%;
-    opacity: 0.45;
-    aspect-ratio: 9/16;
-    max-height: 80%;
-    top: 40%;
+    top: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    max-height: 58%;
+    aspect-ratio: auto;
   }
+  .hero .photo-figure {
+    background-position: 60% 18%;
+    background-size: cover;
+    filter: contrast(1.15) brightness(.85) saturate(.65);
+    -webkit-mask-image:
+      linear-gradient(180deg, #000 0%, #000 55%, rgba(0,0,0,.4) 80%, transparent 100%);
+    mask-image:
+      linear-gradient(180deg, #000 0%, #000 55%, rgba(0,0,0,.4) 80%, transparent 100%);
+    &::after {
+      background: linear-gradient(180deg, rgba(23, 29, 49, .25) 0%, rgba(15, 19, 33, .55) 60%, rgba(10, 13, 20, .85) 100%);
+    }
+    &::before { opacity: .35; }
+  }
+  .hero .photo-tint { opacity: .35; }
+
+  // Hide all glitch slabs on mobile — they were positioned for desktop figure box
+  // and become huge / misaligned at small widths
+  .hero .slab,
+  .hero .slab.green,
+  .hero .slab.dark,
+  .hero .slab.bar,
+  .hero .slab.tag,
+  .hero .slab.tag.b { display: none; }
+
+  // Hide circuit-trace deco SVG on mobile (was tied to desktop layout)
+  .hero .deco { display: none; }
+
+  // Text takes the bottom, full width, no longer fights the photo
   .hero .hero-content {
-    width: 92%;
+    width: 100%;
     max-width: none;
-    padding: 32px 20px 48px 24px;
+    padding: 28px 22px 40px 22px;
+    bottom: 0;
   }
   .hero h1 {
-    font-size: clamp(1.5rem, 5.4vw, 2rem);
+    font-size: clamp(1.55rem, 5.6vw, 2.1rem);
     line-height: 1.16;
+    .ln.l1, .ln.l2, .ln.l3, .ln.l4 { padding-left: 0; }
   }
   .hero .hero-sub {
     font-size: 0.98rem;
   }
-  .services-list li {
-    width: 100%;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .section {
-    padding: 3.5rem 1.5rem;
-  }
+
+  .services-list li { width: 100%; }
+  .form-row { grid-template-columns: 1fr; }
+  .section { padding: 3.5rem 1.5rem; }
 }
 
 @media screen and (max-width: 480px) {
   .hero .figure-block {
-    width: 70%;
-    opacity: 0.32;
-    right: -10%;
-    top: 38%;
+    max-height: 52%;
+  }
+  .hero .photo-figure {
+    background-position: 60% 14%;
+    filter: contrast(1.15) brightness(.8) saturate(.65);
   }
   .hero .hero-content {
-    padding: 28px 18px 40px 22px;
+    padding: 24px 18px 36px 18px;
   }
   .hero h1 {
-    font-size: 1.5rem;
-  }
-  .hero .slab.tag,
-  .hero .slab.tag.b {
-    display: none;
+    font-size: 1.55rem;
   }
   .proof-grid {
     grid-template-columns: 1fr;
