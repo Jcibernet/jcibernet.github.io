@@ -1,4 +1,12 @@
 * {
+// ============================================================================
+// NOTE: styles.css is the source of truth. This .scss file is outdated and
+// no longer compiled. Edit styles.css directly. Pending: full re-port of the
+// hero v3b "Circuit Fracture" block, the Space Grotesk @font-face, the
+// landing-fold reset and the v3b responsive breakpoints.
+// ============================================================================
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
