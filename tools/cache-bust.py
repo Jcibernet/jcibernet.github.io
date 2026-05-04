@@ -33,6 +33,7 @@ ASSETS = [
     "fonts/poppins-600.woff2",
     "fonts/poppins-700.woff2",
     "fonts/poppins-800.woff2",
+    "fonts/spacegrotesk-variable.woff2",
 ]
 
 # Files where we want to rewrite the references.
