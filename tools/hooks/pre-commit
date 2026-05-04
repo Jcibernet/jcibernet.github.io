@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# Auto-run cache-bust before every commit so static asset references
+# always carry an up-to-date content hash. Skipped if no relevant files
+# are staged (CSS, JS, fonts).
+#
+# To bypass intentionally:  git commit --no-verify
+
+set -e
+
+# Repo root (handles being called from any subdir)
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# Only run if at least one staged file is one of the cache-busted assets
+if git diff --cached --name-only --diff-filter=ACMR \
+    | grep -E '^(styles/styles\.css|app\.js|fonts/poppins-[0-9]+\.woff2)$' \
+    > /dev/null; then
+    echo "[pre-commit] cache-busting static assets..."
+    python3 "$REPO_ROOT/tools/cache-bust.py"
+
+    # Re-stage any HTML/CSS that the script may have rewritten
+    git add "$REPO_ROOT/index.html" \
+            "$REPO_ROOT/es/index.html" \
+            "$REPO_ROOT/styles/styles.css" 2>/dev/null || true
+fi
