@@ -4,35 +4,35 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/poppins-400.woff2') format('woff2');
+  src: url('/fonts/poppins-400.woff2?v=7d93459d') format('woff2');
 }
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/poppins-500.woff2') format('woff2');
+  src: url('/fonts/poppins-500.woff2?v=cd36de20') format('woff2');
 }
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/poppins-600.woff2') format('woff2');
+  src: url('/fonts/poppins-600.woff2?v=f4e80d9d') format('woff2');
 }
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/poppins-700.woff2') format('woff2');
+  src: url('/fonts/poppins-700.woff2?v=9338e65f') format('woff2');
 }
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url('/fonts/poppins-800.woff2') format('woff2');
+  src: url('/fonts/poppins-800.woff2?v=60bf0aba') format('woff2');
 }
 
 /* SVG icon system (sprite) */
