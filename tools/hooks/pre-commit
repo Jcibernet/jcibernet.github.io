@@ -1,25 +1,38 @@
 #!/usr/bin/env bash
 #
-# Auto-run cache-bust before every commit so static asset references
-# always carry an up-to-date content hash. Skipped if no relevant files
-# are staged (CSS, JS, fonts).
-#
+# Pre-commit pipeline:
+#   1. If styles.scss changed → recompile to styles.css
+#   2. If any cache-busted asset changed → re-run cache-bust.py
 # To bypass intentionally:  git commit --no-verify
 
 set -e
 
-# Repo root (handles being called from any subdir)
 REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
 
-# Only run if at least one staged file is one of the cache-busted assets
+STAGED="$(git diff --cached --name-only --diff-filter=ACMR)"
+
+# ---- 1. Recompile SCSS if source changed ----
+if echo "$STAGED" | grep -qE '^styles/.*\.scss$'; then
+    echo "[pre-commit] compiling SCSS → CSS..."
+    if [ -x "node_modules/.bin/sass" ]; then
+        node_modules/.bin/sass --no-source-map --style=expanded \
+            styles/styles.scss styles/styles.css
+    else
+        echo "[pre-commit] ERROR: sass not installed. Run 'npm install' first." >&2
+        exit 1
+    fi
+    git add styles/styles.css
+fi
+
+# ---- 2. Cache-bust if any tracked static asset is staged (incl. just-compiled CSS) ----
 if git diff --cached --name-only --diff-filter=ACMR \
-    | grep -E '^(styles/styles\.css|app\.js|fonts/poppins-[0-9]+\.woff2)$' \
+    | grep -E '^(styles/styles\.css|app\.js|fonts/(poppins-[0-9]+|spacegrotesk-variable)\.woff2)$' \
     > /dev/null; then
     echo "[pre-commit] cache-busting static assets..."
-    python3 "$REPO_ROOT/tools/cache-bust.py"
+    python3 tools/cache-bust.py
 
-    # Re-stage any HTML/CSS that the script may have rewritten
-    git add "$REPO_ROOT/index.html" \
-            "$REPO_ROOT/es/index.html" \
-            "$REPO_ROOT/styles/styles.css" 2>/dev/null || true
+    git add index.html \
+            es/index.html \
+            styles/styles.css 2>/dev/null || true
 fi
