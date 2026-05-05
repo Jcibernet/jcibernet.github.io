@@ -490,8 +490,8 @@ a {
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 .marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;
@@ -718,8 +718,11 @@ a {
 .featured-grid-wrapper {
   position: relative;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 .featured-grid-wrapper:hover .featured-grid {
   animation-play-state: paused;
