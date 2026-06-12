@@ -48,7 +48,7 @@
     <link rel="preload" href="/fonts/poppins-800.woff2?v=60bf0aba" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/styles/styles.css?v=34dd6c57">
+    <link rel="stylesheet" href="/styles/styles.css?v=f9bc1668">
 
     <!-- Structured data: Person -->
     <script type="application/ld+json">
@@ -325,66 +325,272 @@
 
         <!-- How I Help -->
         <section class="section services" id="services">
+
+            <svg class="traces" viewBox="0 0 700 1200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+                <defs>
+                    <linearGradient id="trace-fade" x1="1" y1="0" x2="0" y2="0">
+                        <stop offset="0" stop-color="#454e56" stop-opacity=".75"/>
+                        <stop offset="1" stop-color="#454e56" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+                <g stroke="url(#trace-fade)" stroke-width="1" fill="none">
+                    <path d="M700 80 L420 80 L380 120 L160 120"/>
+                    <path d="M700 200 L520 200 L480 240 L240 240"/>
+                    <path d="M700 320 L380 320 L340 360 L120 360"/>
+                    <path d="M700 460 L460 460 L420 500 L200 500"/>
+                    <path d="M700 600 L540 600 L500 640 L280 640"/>
+                    <path d="M700 740 L420 740 L380 780 L160 780"/>
+                    <path d="M700 860 L520 860 L480 900 L240 900"/>
+                    <path d="M700 1000 L380 1000 L340 1040 L120 1040"/>
+                </g>
+                <g stroke="#454e56" stroke-width="1" opacity=".4">
+                    <path d="M420 80  L420 240"/>
+                    <path d="M380 360 L380 500"/>
+                    <path d="M520 200 L520 600"/>
+                    <path d="M460 460 L460 740"/>
+                    <path d="M380 780 L380 1040"/>
+                </g>
+                <g fill="#055821">
+                    <circle cx="420" cy="80" r="2.5" opacity=".7"/>
+                    <circle cx="380" cy="500" r="2.5" opacity=".7"/>
+                    <circle cx="520" cy="600" r="2.5" opacity=".7"/>
+                    <circle cx="380" cy="1040" r="2.5" opacity=".7"/>
+                </g>
+            </svg>
+
             <div class="section-inner">
-                <h2>How I <span class="highlight">Help</span></h2>
-                <p class="services-intro">I offer an integrated approach to data and AI — from architecture to implementation.</p>
-                <ul class="services-list">
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-robot"></use></svg>
-                        <div>
-                            <strong>AI Integration</strong>
-                            <p>Custom AI solutions, LLM integration, and intelligent automation for your workflows.</p>
+
+                <p class="services-eyebrow">
+                    <span>$ ./services.sh</span>
+                    <span class="sep">·</span>
+                    <span>07 capabilities</span>
+                </p>
+                <h2 class="services-title">
+                    How I<br><span class="ay">help</span>
+                </h2>
+                <p class="services-desc">
+                    An integrated approach to data and artificial intelligence — from architecture to implementation, built for production and measurable results.
+                </p>
+
+                <div class="services-grid">
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S01</span>
+                            <span class="svc-status">Online</span>
                         </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-database"></use></svg>
-                        <div>
-                            <strong>Data Infrastructure</strong>
-                            <p>Scalable ETL pipelines, data lakes, and warehouses built for performance.</p>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="8" width="18" height="12" rx="2"/>
+                                <path d="M12 3v3"/><circle cx="12" cy="3" r="1"/>
+                                <circle cx="8.5" cy="13" r="1"/><circle cx="15.5" cy="13" r="1"/>
+                                <path d="M9 17h6"/>
+                            </svg>
                         </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg>
-                        <div>
-                            <strong>Cloud Architecture</strong>
-                            <p>AWS, GCP, and Snowflake — optimized for cost, scale, and reliability.</p>
+                        <h3 class="svc-title">AI Integration</h3>
+                        <p class="svc-body">Custom AI solutions, LLM integration, and intelligent automation for your workflows.</p>
+                        <div class="svc-tech">
+                            <span class="chip">OpenAI</span>
+                            <span class="chip">LangChain</span>
+                            <span class="chip">PyTorch</span>
                         </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-chalkboard-teacher"></use></svg>
-                        <div>
-                            <strong>Team Training</strong>
-                            <p>Upskill your team in data engineering, Python, and modern data practices.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-chart-line"></use></svg>
-                        <div>
-                            <strong>Automated Reporting</strong>
-                            <p>Custom reporting pipelines that deliver real-time insights to stakeholders — no manual work, no delays.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-comments"></use></svg>
-                        <div>
-                            <strong>Enterprise Chatbots</strong>
-                            <p>Production-grade conversational AI built on your data — customer support, internal tools, and knowledge bases.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
-                        <div>
-                            <strong>Multimodal AI Automation</strong>
-                            <p>Automate daily workflows with AI that sees, reads, and understands — documents, images, PDFs, and beyond.</p>
-                        </div>
-                    </li>
-                </ul>
-                <div class="services-cta">
-                    <a href="#contact" class="cta-btn">
-                        Let's discuss your specific needs
-                        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
                     </a>
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S02</span>
+                            <span class="svc-status">Online</span>
+                        </div>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                                <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6"/>
+                            </svg>
+                        </div>
+                        <h3 class="svc-title">Data Infrastructure</h3>
+                        <p class="svc-body">Scalable ETL pipelines, data lakes, and warehouses built for performance.</p>
+                        <div class="svc-tech">
+                            <span class="chip">Airflow</span>
+                            <span class="chip">dbt</span>
+                            <span class="chip">BigQuery</span>
+                        </div>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
+                    </a>
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S03</span>
+                            <span class="svc-status">Online</span>
+                        </div>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.5 19a4.5 4.5 0 1 0-1.42-8.78 7 7 0 1 0-13.08 3.78"/>
+                                <path d="M3 19h14.5"/>
+                            </svg>
+                        </div>
+                        <h3 class="svc-title">Cloud Architecture</h3>
+                        <p class="svc-body">AWS, GCP, and Snowflake — optimized for cost, scale, and reliability.</p>
+                        <div class="svc-tech">
+                            <span class="chip">AWS</span>
+                            <span class="chip">GCP</span>
+                            <span class="chip">Snowflake</span>
+                        </div>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
+                    </a>
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S04</span>
+                            <span class="svc-status">Online</span>
+                        </div>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6"/>
+                                <path d="M2 10 12 4l10 6-10 6L2 10z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="svc-title">Team Training</h3>
+                        <p class="svc-body">Upskill your team in data engineering, Python, and modern data practices.</p>
+                        <div class="svc-tech">
+                            <span class="chip">Python</span>
+                            <span class="chip">Pandas</span>
+                            <span class="chip">Notebooks</span>
+                        </div>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
+                    </a>
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S05</span>
+                            <span class="svc-status">Online</span>
+                        </div>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3v18h18"/>
+                                <path d="m7 14 4-4 4 4 5-5"/>
+                                <path d="M17 9h3v3"/>
+                            </svg>
+                        </div>
+                        <h3 class="svc-title">Automated Reporting</h3>
+                        <p class="svc-body">Reporting pipelines that deliver real-time insights to stakeholders — no manual work.</p>
+                        <div class="svc-tech">
+                            <span class="chip">Looker</span>
+                            <span class="chip">Metabase</span>
+                            <span class="chip">Streamlit</span>
+                        </div>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
+                    </a>
+
+                    <a href="#contact" class="svc">
+                        <span class="svc-slab" aria-hidden="true"></span>
+                        <div class="svc-strip">
+                            <span class="svc-num">S06</span>
+                            <span class="svc-status">Online</span>
+                        </div>
+                        <div class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="svc-title">Enterprise Chatbots</h3>
+                        <p class="svc-body">Production-grade conversational AI on your data — customer support, internal tools, and knowledge bases.</p>
+                        <div class="svc-tech">
+                            <span class="chip">RAG</span>
+                            <span class="chip">LangChain</span>
+                            <span class="chip">Vector DB</span>
+                        </div>
+                        <svg class="svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+                        </svg>
+                    </a>
+
                 </div>
+
+                <a href="#contact" class="svc-featured">
+                    <span class="corner-tr" aria-hidden="true"></span>
+                    <span class="corner-bl" aria-hidden="true"></span>
+
+                    <div class="svc-featured-main">
+                        <p class="svc-featured-strip">
+                            <span class="tag-flagship">Flagship</span>
+                            <span class="svc-num">S07</span>
+                            <span>· New in 2026</span>
+                        </p>
+                        <h3 class="svc-featured-title">Multimodal AI Automation</h3>
+                        <p class="svc-featured-body">
+                            Automate daily workflows with AI that sees, reads, and understands — documents, images, PDFs, videos. Contextual processing in production, not demos.
+                        </p>
+                        <div class="svc-featured-tech">
+                            <span class="chip">GPT-4V</span>
+                            <span class="chip">Claude Vision</span>
+                            <span class="chip">Gemini</span>
+                            <span class="chip">Vision APIs</span>
+                            <span class="chip">OCR</span>
+                        </div>
+                    </div>
+
+                    <div class="svc-featured-side">
+                        <p class="svc-featured-side-label">▸ Capabilities</p>
+                        <div class="capability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 11 3 3 4-5"/>
+                            </svg>
+                            <span>Documents</span>
+                            <span class="cap-meta">PDF·DOCX</span>
+                        </div>
+                        <div class="capability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>
+                            </svg>
+                            <span>Images</span>
+                            <span class="cap-meta">PNG·JPG</span>
+                        </div>
+                        <div class="capability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/><path d="m10 8 6 4-6 4Z"/>
+                            </svg>
+                            <span>Audio · Video</span>
+                            <span class="cap-meta">MP4·MP3</span>
+                        </div>
+                        <div class="capability">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                <path d="m22 9-10 6L2 9l10-6 10 6z"/><path d="m2 15 10 6 10-6"/>
+                            </svg>
+                            <span>Multimodal</span>
+                            <span class="cap-meta">CTX·MIX</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="services-cta-wrap">
+                    <a href="#contact" class="services-cta">
+                        <span class="cta-tab">/INIT</span>
+                        <span class="cta-label">Let's discuss your specific needs</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <span class="services-cta-meta">
+                        <span class="dot">●</span> 24h response · Free discovery call
+                    </span>
+                </div>
+
             </div>
         </section>
 
