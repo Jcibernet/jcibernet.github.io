@@ -101,6 +101,55 @@ feature work → dev → PR → merge to master → live
 
 The `dev` branch is the integration branch for in-progress work.
 
+## DNS & domain (Cloudflare + GitHub Pages)
+
+DNS is managed in **Cloudflare** (registrar nameservers point to Cloudflare),
+but the records are **"DNS only" (grey cloud) — proxy is intentionally OFF**.
+
+| Type | Name                              | Content              | Proxy    | Purpose                          |
+| ---- | --------------------------------- | -------------------- | -------- | -------------------------------- |
+| CNAME | `juancampias.com` (apex)         | `jcibernet.github.io`| DNS only | Apex → GitHub Pages (301 to www) |
+| CNAME | `www`                            | `jcibernet.github.io`| DNS only | Primary host (`CNAME` file)      |
+| TXT  | `_github-pages-challenge-Jcibernet` | challenge token   | DNS only | GitHub domain verification       |
+| TXT  | `@`                              | `v=spf1 -all`        | DNS only | SPF — no mail sent from domain   |
+| TXT  | `_dmarc`                         | `v=DMARC1; p=reject; sp=reject; aspf=s;` | DNS only | DMARC — reject spoofed mail |
+| TXT  | `@`                              | `google-site-verification=…` | DNS only | Google Search Console     |
+
+### ⚠️ Keep proxy OFF (grey cloud)
+
+GitHub Pages auto-renews its Let's Encrypt cert via an ACME challenge. The
+**Cloudflare proxy (orange cloud) blocks that challenge**, so the cert silently
+expires and the site breaks with **Cloudflare Error 526** (origin SSL invalid).
+Cloudflare's dashboard nags to enable proxying — ignore it for this setup.
+
+If you ever re-enable the proxy for CDN/WAF, you must set SSL/TLS mode to
+**Full** (not Full strict) and add a rule that lets the ACME challenge through,
+otherwise renewals will fail.
+
+### Cert recovery (if 526 happens again)
+
+1. Set both CNAMEs to **DNS only** (grey cloud) in Cloudflare.
+2. GitHub repo → **Settings → Pages** → remove + re-add custom domain `www.juancampias.com`.
+3. Wait for **"Certificate provisioned"**, then tick **Enforce HTTPS**.
+
+### Email anti-spoofing
+
+The domain sends no email (no MX record). SPF `-all` + DMARC `p=reject` tell
+the world to reject any mail claiming to be from `@juancampias.com`. If you add
+real email later, these records must be updated.
+
+## Security posture
+
+Static site → minimal attack surface. Current state:
+
+- **HTTPS enforced** (HTTP→HTTPS 301, apex→www 301, valid LE cert auto-renewed).
+- **No secrets** in the repo; contact form posts to **Formspree** (no backend).
+- **Anti-spam** honeypot (`_gotcha`) on the form; external links use `rel="noopener"`.
+- **Email spoofing** blocked via SPF + DMARC.
+- **Note:** GitHub Pages can't set custom headers (HSTS/CSP/X-Frame-Options).
+  Acceptable for a static portfolio; would require re-introducing the Cloudflare
+  proxy (with the cert caveat above) to add them.
+
 ## Visual identity
 
 Locked palette and typography are documented in
