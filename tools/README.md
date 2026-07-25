@@ -8,8 +8,8 @@ Rewrites static-asset references (CSS, JS, woff2) in `index.html`,
 `es/index.html` and `styles/styles.css` so each URL carries a content
 hash query string: `/styles/styles.css?v=eb0c91ed`.
 
-Why: assets are cached for 6 months at the Cloudflare edge. A new hash
-is a new URL → no need to "Purge Everything" in CF after every deploy.
+Why: browsers and CDNs can cache assets aggressively. A new hash produces a
+new URL, so updated assets are fetched without a manual cache purge.
 
 ```bash
 python3 tools/cache-bust.py

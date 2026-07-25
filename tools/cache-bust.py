@@ -6,8 +6,8 @@ Run this whenever you change /styles/styles.css, /app.js, or any /fonts/*.woff2
 BEFORE committing. It rewrites the references in index.html and es/index.html
 so that the URL changes (?v=<hash>) only when the file content changes.
 
-Cloudflare (and any browser/CDN) treats a different URL as a fresh resource:
-no need to "Purge Everything" after each deploy.
+Browsers and CDNs treat a different URL as a fresh resource, so updated assets
+are fetched without a manual cache purge.
 
 Usage:
     python3 tools/cache-bust.py

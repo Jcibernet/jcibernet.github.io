@@ -1,17 +1,8 @@
 (function () {
     'use strict';
 
-    // -----------------------------------------------------------------
-    // Geo-redirect (only on EN root "/", and only if user has no cookie)
-    // -----------------------------------------------------------------
-    // Lightweight fallback in lieu of a Cloudflare Worker. Runs ASAP, before
-    // most of the DOM is parsed (script is loaded near the bottom but does a
-    // synchronous decision; if redirect happens, the rest of the page is
-    // discarded by the navigation).
-    var SPANISH_COUNTRIES = [
-        'AR','BO','CL','CO','CR','CU','DO','EC','ES','GQ',
-        'GT','HN','MX','NI','PA','PE','PR','PY','SV','UY','VE'
-    ];
+    // Privacy-preserving language redirect. Browser preference stays local:
+    // no visitor IP or locale data is sent to a geolocation service.
 
     function readCookie(name) {
         var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]+)'));
@@ -26,7 +17,6 @@
 
     var path = window.location.pathname;
     var isRoot = (path === '/' || path === '/index.html');
-    var isEs   = path.indexOf('/es/') === 0 || path === '/es';
     var prefLang = readCookie('pref_lang');
 
     // Persist explicit clicks on the language toggle as a cookie.
@@ -40,26 +30,11 @@
         }
     }, true);
 
-    // Only redirect from the English root, never from /es/
-    if (isRoot && !prefLang) {
-        // 1.5s timeout: if geolocation fails or is slow, just stay on EN.
-        var done = false;
-        var timer = setTimeout(function () { done = true; }, 1500);
-
-        try {
-            fetch('https://ipapi.co/json/', { cache: 'force-cache' })
-                .then(function (r) { return r.ok ? r.json() : null; })
-                .then(function (data) {
-                    if (done || !data || !data.country_code) return;
-                    clearTimeout(timer);
-                    if (SPANISH_COUNTRIES.indexOf(data.country_code) !== -1) {
-                        // No need to set cookie: next visit will already be on /es/
-                        // and the toggle there will set pref_lang if user goes back.
-                        window.location.replace('/es/');
-                    }
-                })
-                .catch(function () { /* silently ignore */ });
-        } catch (_) { /* old browsers: stay on EN */ }
+    // Only redirect from the English root, never after an explicit choice.
+    var browserLang = (navigator.languages && navigator.languages[0]) ||
+        navigator.language || '';
+    if (isRoot && !prefLang && browserLang.toLowerCase().indexOf('es') === 0) {
+        window.location.replace('/es/');
     }
 
     // -----------------------------------------------------------------
@@ -69,6 +44,22 @@
         if (document.readyState !== 'loading') return fn();
         document.addEventListener('DOMContentLoaded', fn);
     }
+
+    // Explicit rendering keeps Turnstile responsive: flexible on regular
+    // screens and compact where the fixed 300px widget would overflow.
+    window.onTurnstileLoad = function () {
+        var container = document.getElementById('turnstileWidget');
+        if (!container || !window.turnstile) return;
+
+        var compact = window.matchMedia &&
+            window.matchMedia('(max-width: 480px)').matches;
+        window.turnstile.render(container, {
+            sitekey: container.getAttribute('data-sitekey'),
+            theme: 'dark',
+            size: compact ? 'compact' : 'flexible',
+            language: (document.documentElement.lang || 'en').slice(0, 2)
+        });
+    };
 
     ready(function () {
         // Footer year (auto-updates)
@@ -100,20 +91,99 @@
             cloneChildren(document.querySelector('.featured-grid'));
         });
 
-        // Contact form: minimal client-side validation
+        // Contact form: layered client-side anti-abuse for the static site.
+        // Formspree still performs the authoritative server-side filtering.
         var form = document.getElementById('contactForm');
         if (form) {
             var lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
-            var msg = lang === 'es'
-                ? 'Por favor completá todos los campos requeridos.'
-                : 'Please fill in all required fields.';
+            var messages = lang === 'es' ? {
+                name: 'Ingresá un nombre de al menos 2 caracteres.',
+                details: 'Contame un poco más: el mensaje debe tener al menos 20 caracteres.',
+                tooFast: 'Esperá unos segundos antes de enviar el mensaje.',
+                repeated: 'El mensaje ya fue enviado. Esperá un minuto antes de volver a intentar.',
+                links: 'Para evitar spam, el mensaje puede incluir como máximo dos enlaces.',
+                blocked: 'No se pudo enviar el mensaje. Revisá los campos e intentá de nuevo.',
+                captcha: 'Completá la verificación de seguridad antes de enviar.',
+                sending: 'Enviando mensaje…'
+            } : {
+                name: 'Enter a name with at least 2 characters.',
+                details: 'Please add some detail: the message must be at least 20 characters.',
+                tooFast: 'Please wait a few seconds before sending the message.',
+                repeated: 'That message was already sent. Please wait a minute before trying again.',
+                links: 'To prevent spam, the message can include at most two links.',
+                blocked: 'The message could not be sent. Check the fields and try again.',
+                captcha: 'Complete the security verification before sending.',
+                sending: 'Sending message…'
+            };
+            var status = document.getElementById('formStatus');
+            var submit = form.querySelector('[type="submit"]');
+            var trap = form.elements._gotcha;
+            var name = form.elements.name;
+            var challenge = form.elements.challenge;
+            var turnstileWidget = document.getElementById('turnstileWidget');
+            var loadedAt = Date.now();
+            var interacted = false;
+            var storageKey = 'contact-form-last-submit';
+
+            function endpoint() {
+                return ['https:', '', 'formspree.io', 'f', 'xwvrnkzy'].join('/');
+            }
+
+            function armForm() {
+                if (!form.hasAttribute('action')) form.setAttribute('action', endpoint());
+            }
+
+            function recordInteraction(e) {
+                if (!e.isTrusted) return;
+                interacted = true;
+                armForm();
+            }
+
+            function showError(e, message, field) {
+                e.preventDefault();
+                status.textContent = message;
+                if (field) field.focus();
+            }
+
+            form.addEventListener('pointerdown', recordInteraction, { passive: true });
+            form.addEventListener('keydown', recordInteraction);
+            form.addEventListener('focusin', recordInteraction);
+            form.addEventListener('input', function () {
+                status.textContent = '';
+            });
+
             form.addEventListener('submit', function (e) {
-                var name = document.getElementById('name');
-                var email = document.getElementById('email');
-                var challenge = document.getElementById('challenge');
-                if (!name.value.trim() || !email.value.trim() || !challenge.value.trim()) {
-                    e.preventDefault();
-                    alert(msg);
+                var now = Date.now();
+                var lastSubmit = 0;
+                var links = challenge.value.match(/(?:https?:\/\/|www\.)\S+/gi) || [];
+                var turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
+
+                try {
+                    lastSubmit = Number(window.localStorage.getItem(storageKey)) || 0;
+                } catch (_) { /* storage may be disabled */ }
+
+                if (trap.value) {
+                    showError(e, messages.blocked);
+                } else if (!interacted || now - loadedAt < 3000) {
+                    showError(e, messages.tooFast);
+                } else if (now - lastSubmit < 60000) {
+                    showError(e, messages.repeated);
+                } else if (name.value.trim().length < 2) {
+                    showError(e, messages.name, name);
+                } else if (challenge.value.trim().length < 20) {
+                    showError(e, messages.details, challenge);
+                } else if (links.length > 2) {
+                    showError(e, messages.links, challenge);
+                } else if (!turnstileResponse || !turnstileResponse.value) {
+                    showError(e, messages.captcha);
+                    turnstileWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    armForm();
+                    try {
+                        window.localStorage.setItem(storageKey, String(now));
+                    } catch (_) { /* storage may be disabled */ }
+                    submit.disabled = true;
+                    status.textContent = messages.sending;
                 }
             });
         }

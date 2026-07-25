@@ -27,3 +27,15 @@ build/
 # AI assistant config (local only — not for public repo)
 CLAUDE.md
 .factory/
+
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+.claude/
