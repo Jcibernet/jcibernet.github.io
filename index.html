@@ -211,8 +211,8 @@
                         <span class="proof-label">Lower LLM API cost with the agent harness my team adopted</span>
                     </div>
                     <div class="proof-card">
-                        <span class="proof-number">13→3 GB</span>
-                        <span class="proof-label">Peak memory on 15M-row reports after a Polars rewrite</span>
+                        <span class="proof-number">3×</span>
+                        <span class="proof-label">Faster reporting, now running in parallel on the same infrastructure</span>
                     </div>
                     <div class="proof-card">
                         <span class="proof-number">6 years</span>
@@ -341,9 +341,9 @@
                             <span class="svc-num">C02</span>
                             <span class="svc-status">Production</span>
                         </div>
-                        <p class="case-metric">13→3 GB</p>
-                        <h3 class="svc-title">15M-row reports under a hard memory limit</h3>
-                        <p class="svc-body">Reporting jobs over 15M rows ran in Kubernetes pods capped at 13 GB. I rewrote them with Polars lazy and streaming execution: peak memory dropped to 3 GB, runtime to a third, and the freed memory let jobs run concurrently on the same pod.</p>
+                        <p class="case-metric">3×</p>
+                        <h3 class="svc-title">Faster reporting on the same infrastructure</h3>
+                        <p class="svc-body">Heavy reports over 15M rows used almost all of their Kubernetes pod, so they had to run one at a time. I rewrote them with Polars: they run in a third of the time and use a fraction of the resources, so several jobs now share the same pod without adding infrastructure.</p>
                         <div class="svc-tech">
                             <span class="chip">Polars</span>
                             <span class="chip">Kubernetes</span>

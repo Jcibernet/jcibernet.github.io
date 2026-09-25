@@ -211,8 +211,8 @@
                         <span class="proof-label">Menos costo de API de LLMs con el harness de agentes que adoptó mi equipo</span>
                     </div>
                     <div class="proof-card">
-                        <span class="proof-number">13→3 GB</span>
-                        <span class="proof-label">Pico de memoria en reportes de 15M de filas tras reescribirlos con Polars</span>
+                        <span class="proof-number">3×</span>
+                        <span class="proof-label">Reportes más rápidos, que ahora corren en paralelo sobre la misma infraestructura</span>
                     </div>
                     <div class="proof-card">
                         <span class="proof-number">6 años</span>
@@ -341,9 +341,9 @@
                             <span class="svc-num">C02</span>
                             <span class="svc-status">Producción</span>
                         </div>
-                        <p class="case-metric">13→3 GB</p>
-                        <h3 class="svc-title">Reportes de 15M de filas con un límite de memoria estricto</h3>
-                        <p class="svc-body">Los reportes de más de 15M de filas corrían en pods de Kubernetes con un tope de 13 GB. Los reescribí con Polars en modo lazy y streaming: el pico de memoria bajó a 3 GB, el tiempo a un tercio, y la memoria liberada permitió correr jobs en paralelo en el mismo pod.</p>
+                        <p class="case-metric">3×</p>
+                        <h3 class="svc-title">Reportes más rápidos con la misma infraestructura</h3>
+                        <p class="svc-body">Reportes pesados de más de 15M de filas ocupaban casi todo su pod de Kubernetes y tenían que correr de a uno. Los reescribí con Polars: corren en un tercio del tiempo y usan una fracción de los recursos, así que ahora varios jobs comparten el mismo pod sin sumar infraestructura.</p>
                         <div class="svc-tech">
                             <span class="chip">Polars</span>
                             <span class="chip">Kubernetes</span>
