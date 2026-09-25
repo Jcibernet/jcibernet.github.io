@@ -430,21 +430,6 @@ a {
   align-items: center;
   justify-content: center;
 }
-.marquee-item span.marquee-mark {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--color-grey-5);
-  border-radius: 2px;
-  color: var(--color-grey-2);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  opacity: 0.7;
-  transition: color 0.3s, opacity 0.3s, border-color 0.3s;
-}
 .marquee-item span {
   font-size: 0.9rem;
   font-weight: 500;
@@ -453,11 +438,6 @@ a {
   transition: color 0.3s;
 }
 .marquee-item:hover img, .marquee-item:hover .marquee-icon {
-  opacity: 1;
-}
-.marquee-item:hover .marquee-mark {
-  color: var(--color-grey-1);
-  border-color: var(--color-grey-3);
   opacity: 1;
 }
 .marquee-item:hover span {
