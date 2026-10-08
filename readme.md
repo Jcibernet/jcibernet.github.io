@@ -33,9 +33,7 @@ and English (`/`) versions are served from separate URLs for SEO.
 │   ├── cache-bust.py       # Rewrites asset URLs with content hashes
 │   └── hooks/pre-commit    # Auto-compiles SCSS + runs cache-bust on staged files
 ├── package.json            # Dart Sass devDep + npm scripts
-├── sitemap.xml / robots.txt / CNAME
-└── docs/
-    └── AI_DEVELOPER.md     # AI assistant role/system prompt
+└── sitemap.xml / robots.txt / CNAME
 ```
 
 ## Local development

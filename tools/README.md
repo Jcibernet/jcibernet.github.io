@@ -20,12 +20,12 @@ and the HTML references the CSS, so a font change requires two passes).
 
 ## `hooks/pre-commit`
 
-Same script, wired as a Git pre-commit hook. Only runs if you've staged
-a file that matters (CSS, JS, or a Poppins woff2). On a fresh clone:
+Recompiles `styles/styles.scss` when it is staged, then runs the same
+cache-bust script if a hashed asset is staged (`styles.css`, `app.js`, or a
+Poppins / Space Grotesk woff2). On a fresh clone:
 
 ```bash
-ln -sf ../../tools/hooks/pre-commit .git/hooks/pre-commit
-chmod +x tools/hooks/pre-commit
+git config core.hooksPath tools/hooks
 ```
 
 To bypass for a single commit:
